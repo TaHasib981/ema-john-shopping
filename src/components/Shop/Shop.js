@@ -3,6 +3,7 @@ import Product from '../Product/Product';
 import './Shop.css'
 const Shop = () => {
     const [products , setProducts] =  useState([])
+    const [cart, setCart] = useState([])
     useEffect( () => {
         fetch('https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json')
         .then(res => res.json())
@@ -10,6 +11,9 @@ const Shop = () => {
     },[])
     const addeventhandler = (product) => {
       console.log(product);
+      const newCart = [...cart, product]
+      setCart(newCart)
+      
     }
     return (
         <div className='shop-container'>
@@ -23,7 +27,8 @@ const Shop = () => {
                 }
             </div>
             <div className="card-container">
-                card com 2
+                <h4>Details of Cart</h4>
+                <h6>Select Items: {cart.length}</h6>
             </div>
         </div>
     );
